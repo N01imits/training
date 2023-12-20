@@ -1,0 +1,107 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	color: #343a40;
+	line-height: 1;
+	/* color: #087f5b;
+color: #343a40 */
+}
+
+.carousel {
+	width: 800px;
+	margin: 100px auto;
+	background-color: #054834;
+	padding: 32px 48px 32px 86px;
+	color: #fff;
+	position: relative;
+
+	display: flex;
+	align-items: center;
+	gap: 86px;
+}
+
+img {
+	height: 200px;
+
+	border-radius: 8px;
+	transform: scale(1.5);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.testmonial-text {
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 1.5;
+	margin-bottom: 32px;
+}
+
+.testimonial-author {
+	font-size: 14px;
+	margin-bottom: 4px;
+}
+
+.testimonial-job {
+	font-size: 12px;
+}
+
+.button {
+	background-color: #fff;
+	border: none;
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	position: absolute;
+	stroke: #054834;
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+	cursor: pointer;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.button--left {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' data-slot='icon' class='button-icon'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M15.75 19.5 8.25 12l7.5-7.5' /%3E%3C/svg%3E ");
+	left: 0;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.button--right {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' data-slot='icon' class='button-icon'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m8.25 4.5 7.5 7.5-7.5 7.5' /%3E%3C/svg%3E ");
+	right: 0;
+	top: 50%;
+	transform: translate(50%, -50%);
+}
+
+.button-icon {
+	height: 24px;
+	width: 24px;
+}
+
+.dots {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translate(-50%, 32px);
+	display: flex;
+	gap: 12px;
+}
+
+.dot {
+	width: 12px;
+	height: 12px;
+	background-color: #fff;
+	border: 2px solid #054834;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.dot-active {
+	background-color: #054834;
+}

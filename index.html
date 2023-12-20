@@ -4,7 +4,38 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="./src/assets/css/style.css" />
+		<title>Components</title>
 	</head>
-	<body></body>
+	<body>
+		<div class="carousel">
+			<img src="./src/assets/img/maria.jpg" alt="girl Maria" />
+			<blockquote class="testmonial">
+				<p class="testmonial-text">
+					"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum,
+					natus recusandae. Quos, numquam dolorem! Assumenda nihil possimus
+					omnis consectetur nulla accusamus debitis beatae expedita."
+					Accusantium
+				</p>
+				<p class="testimonial-author">Maria</p>
+				<p class="testimonial-job">Senior Product Manager</p>
+			</blockquote>
+
+			<button class="button button--left"></button>
+			<button class="button button--right"></button>
+
+			<div class="dots">
+				<button class="dot dot-active">&nbsp;</button>
+				<button class="dot">&nbsp;</button>
+				<button class="dot">&nbsp;</button>
+				<button class="dot">&nbsp;</button>
+			</div>
+		</div>
+	</body>
 </html>
