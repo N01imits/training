@@ -166,10 +166,11 @@ body {
 	margin-bottom: 0;
 }
 
-.accordion__header {
+.accordion__header .accordion__button {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	width: 100%;
 	padding: 20px;
 	background: -webkit-linear-gradient(
 		to right,
@@ -183,33 +184,54 @@ body {
 	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 	color: #000;
+	border: 0;
 	cursor: pointer;
 	font-weight: 700;
 }
 
-.accordion__header::after {
-	content: '';
-	width: 16px;
-	height: 16px;
-	margin-left: auto;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'%3E%3Cpath fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M112 184l144 144 144-144'/%3E%3C/svg%3E");
-	background-repeat: no-repeat;
-	background-size: 16px;
+.accordion__title {
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	font-weight: bold;
 }
 
-.active .accordion__header::after {
-	transform: rotate(-180deg);
+/* indocator */
+.accordion__indicator > * {
+	width: 12px;
 }
 
-.accordion__body {
+.accordion__item .indicator__plus {
+	display: block;
+}
+
+.accordion__item .indicator__minus {
+	display: none;
+}
+
+.accordion__item.active .indicator__minus {
+	display: block;
+}
+
+.accordion__item.active .indicator__plus {
+	display: none;
+}
+
+/* accordion content */
+.accordion__content {
 	line-height: 1.4;
-	background-color: #cdf5fd; /* Цвет фона контента */
+	background-color: #cdf5fd;
 	overflow: hidden;
-	max-height: 0; /* Скрываем контент */
+	visibility: hidden;
+	height: 0;
 	transition: 0.3s;
 }
 
-.accordion__body p {
+.accordion__item.active .accordion__content {
+	visibility: visible;
+	transition: 0.3s;
+}
+
+.accordion__content p {
 	padding: 20px;
 	font-size: 1.7rem;
 }

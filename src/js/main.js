@@ -1,5 +1,4 @@
 window.addEventListener('DOMContentLoaded', () => {
-	const accordions = document.querySelectorAll('.accordion__item'); // считываем все элементы аккордеона в массив
 	const tabs = document.querySelectorAll('.operations__tab');
 	const tabsContainer = document.querySelector('.operations__tab-container');
 	const tabsContent = document.querySelectorAll('.operations__content');
@@ -49,21 +48,51 @@ window.addEventListener('DOMContentLoaded', () => {
 			.classList.add('operations__content--active');
 	});
 
-	const accordiomFunction = e => {
-		e.preventDefault(); // сбрасываем стандартное поведение
-		let currentBox = e.target.closest('.accordion__item'); // определяем текущий бокс
-		let currentContent = e.target.nextElementSibling; // находим скрытый контент
-		currentBox.classList.toggle('active'); // присваиваем ему активный класс
-		if (currentBox.classList.contains('active')) {
-			// если класс активный ..
-			currentContent.style.maxHeight = currentContent.scrollHeight + 'px'; // открываем контент
-		} else {
-			// в противном случае
-			currentContent.style.maxHeight = 0; // скрываем контент}
-		}
+	// accordion
+	const isAccordionOpen = accordion => {
+		return accordion.classList.contains('active');
 	};
 
-	accordions.forEach(accordion => {
-		accordion.addEventListener('click', accordiomFunction); // при нажатии на бокс вызываем ф-ию boxHanlder
+	const openAccordion = accordion => {
+		const accordionContent = accordion.querySelector('.accordion__content');
+
+		accordionContent.style.height = `${getContentHeight(accordion)}px`;
+		accordion.classList.add('active');
+	};
+
+	const closeAccordion = accordion => {
+		const accordionHeaderButton = accordion.querySelector('.accordion__button');
+		const accordionContent = accordion.querySelector('.accordion__content');
+
+		accordion.classList.remove('active');
+		accordionContent.style.height = 0;
+		accordionHeaderButton.focus();
+	};
+
+	const getContentHeight = accordion => {
+		const accordionInner = accordion.querySelector('.accordion__inner');
+		return accordionInner.getBoundingClientRect().height;
+	};
+
+	const accordionContainer = document.querySelector('.accordion');
+
+	accordionContainer.addEventListener('click', event => {
+		const accordionHeader = event.target.closest('.accordion__header');
+		if (!accordionHeader) return;
+
+		const accordion = accordionHeader.parentElement;
+
+		isAccordionOpen(accordion) ? closeAccordion(accordion) : openAccordion(accordion);
+	});
+
+	document.addEventListener('keydown', event => {
+		const accordion = event.target.closest('.accordion__item');
+
+		if (event.key !== 'Escape') return;
+		if (!accordion) return;
+
+		if (isAccordionOpen(accordion)) {
+			closeAccordion(accordion);
+		}
 	});
 });
