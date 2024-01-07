@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	tabsContainer?.addEventListener('click', function (e) {
 		const target = e.target as HTMLElement;
-		const clicked = target.closest('.operations__tab');
+		const clicked: any = target.closest('.operations__tab');
 
 		// Guard clause
 		if (!clicked) return;
@@ -44,24 +44,25 @@ window.addEventListener('DOMContentLoaded', () => {
 		clicked.classList.add('operations__tab--active');
 
 		// Activate content area
+
 		document
 			?.querySelector(`.operations__content--${clicked.dataset.tab}`)
 			?.classList.add('operations__content--active');
 	});
 
 	// accordion
-	const isAccordionOpen = accordion => {
+	const isAccordionOpen = (accordion: any) => {
 		return accordion.classList.contains('active');
 	};
 
-	const openAccordion = accordion => {
+	const openAccordion = (accordion: any) => {
 		const accordionContent = accordion.querySelector('.accordion__content');
 
 		accordionContent.style.height = `${getContentHeight(accordion)}px`;
 		accordion.classList.add('active');
 	};
 
-	const closeAccordion = accordion => {
+	const closeAccordion = (accordion: any) => {
 		const accordionHeaderButton = accordion.querySelector('.accordion__button');
 		const accordionContent = accordion.querySelector('.accordion__content');
 
@@ -70,7 +71,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		accordionHeaderButton.focus();
 	};
 
-	const getContentHeight = accordion => {
+	const getContentHeight = (accordion: any) => {
 		const accordionInner = accordion.querySelector('.accordion__inner');
 		return accordionInner.getBoundingClientRect().height;
 	};
