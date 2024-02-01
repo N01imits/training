@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	tabsContainer?.addEventListener('click', function (e) {
 		const target = e.target as HTMLElement;
-		const clicked: any = target.closest('.operations__tab');
+		const clicked: HTMLElement | null = target.closest('.operations__tab');
 
 		// Guard clause
 		if (!clicked) return;
@@ -51,28 +51,36 @@ window.addEventListener('DOMContentLoaded', () => {
 	});
 
 	// accordion
-	const isAccordionOpen = (accordion: any) => {
-		return accordion.classList.contains('active');
+	const isAccordionOpen = (accordion: HTMLElement | null) => {
+		return accordion?.classList.contains('active');
 	};
 
-	const openAccordion = (accordion: any) => {
-		const accordionContent = accordion.querySelector('.accordion__content');
+	const openAccordion = (accordion: HTMLElement) => {
+		const accordionContent = accordion.querySelector(
+			'.accordion__content',
+		) as HTMLElement;
 
 		accordionContent.style.height = `${getContentHeight(accordion)}px`;
 		accordion.classList.add('active');
 	};
 
-	const closeAccordion = (accordion: any) => {
-		const accordionHeaderButton = accordion.querySelector('.accordion__button');
-		const accordionContent = accordion.querySelector('.accordion__content');
+	const closeAccordion = (accordion: HTMLElement) => {
+		const accordionHeaderButton = accordion.querySelector(
+			'.accordion__button',
+		) as HTMLElement;
+		const accordionContent = accordion.querySelector(
+			'.accordion__content',
+		) as HTMLElement;
 
 		accordion.classList.remove('active');
-		accordionContent.style.height = 0;
+		accordionContent.style.height = '0';
 		accordionHeaderButton.focus();
 	};
 
-	const getContentHeight = (accordion: any) => {
-		const accordionInner = accordion.querySelector('.accordion__inner');
+	const getContentHeight = (accordion: HTMLElement) => {
+		const accordionInner = accordion.querySelector(
+			'.accordion__inner',
+		) as HTMLElement;
 		return accordionInner.getBoundingClientRect().height;
 	};
 
@@ -83,14 +91,16 @@ window.addEventListener('DOMContentLoaded', () => {
 		const accordionHeader = target.closest('.accordion__header');
 		if (!accordionHeader) return;
 
-		const accordion = accordionHeader.parentElement;
+		const accordion = accordionHeader.parentElement as HTMLElement;
 
-		isAccordionOpen(accordion) ? closeAccordion(accordion) : openAccordion(accordion);
+		isAccordionOpen(accordion)
+			? closeAccordion(accordion)
+			: openAccordion(accordion);
 	});
 
 	document.addEventListener('keydown', event => {
 		const target = event.target as HTMLElement;
-		const accordion = target.closest('.accordion__item');
+		const accordion = target.closest('.accordion__item') as HTMLElement;
 
 		if (event.key !== 'Escape') return;
 		if (!accordion) return;
